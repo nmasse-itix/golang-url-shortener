@@ -196,7 +196,7 @@ func generateRandomString(length int) (string, error) {
 		}
 		n := num.Int64()
 		if unicode.IsLetter(rune(n)) {
-			result += string(n)
+			result += string([]rune{rune(n)})
 		}
 	}
 	return result, nil

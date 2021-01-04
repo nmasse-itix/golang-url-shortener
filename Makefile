@@ -9,7 +9,7 @@ buildNodeFrontend:
 	cd web && rm build/static/**/*.map
 
 embedFrontend:
-	cd cmd/golang-url-shortener && packr2
+	cd cmd/golang-url-shortener && packr2 --legacy
 
 getCMDDependencies:
 	go get -v github.com/mattn/goveralls
