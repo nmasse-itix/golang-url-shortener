@@ -46,6 +46,11 @@ func (h *Handler) initOAuth() {
 		auth.WithAdapterWrapper(auth.NewOktaAdapter(okta.ClientID, okta.ClientSecret, okta.EndpointURL), h.engine.Group("/api/v1/auth/okta"))
 		h.providers = append(h.providers, "okta")
 	}
+	genericOIDC := util.GetConfig().GenericOIDC
+	if genericOIDC.Enabled() {
+		auth.WithAdapterWrapper(auth.NewGenericOIDCAdapter(genericOIDC.ClientID, genericOIDC.ClientSecret, genericOIDC.EndpointURL), h.engine.Group("/api/v1/auth/generic_oidc"))
+		h.providers = append(h.providers, "generic_oidc")
+	}
 
 	h.engine.POST("/api/v1/auth/check", h.handleAuthCheck)
 }
