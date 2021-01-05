@@ -48,3 +48,16 @@ Only because I just want to extend my current self hosted URL shorter (which was
 - Travis CI
 - Key / Value databases
 - Dockerfile and Docker Image Creation
+
+## Compilation from Source
+
+```sh
+test -n "$GOPATH" || echo "GOPATH is not set"
+export GO111MODULE=auto
+go get github.com/mxschmitt/golang-url-shortener
+cd $GOPATH/src/github.com/mxschmitt/golang-url-shortener
+git remote add mine git@github.com:nmasse-itix/golang-url-shortener.git
+git pull mine master
+make
+``` 
+
